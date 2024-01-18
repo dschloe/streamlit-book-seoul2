@@ -149,8 +149,8 @@ def regRession(total_df):
 
     sns.scatterplot(data=reg_df, x='BLDG_AREA', y='OBJ_AMT', ax=ax)
     ax.set_title("The best-fitting regression line")
-    ax.set_xlabel("건물면적")
-    ax.set_ylabel("아파트거래가격(만원)")
+    ax.set_xlabel("건물면적", fontproperties=prop)
+    ax.set_ylabel("아파트거래가격(만원)", fontproperties=prop)
     ax.plot(x, slope * x + intercept)
 
     if intercept < 0:
