@@ -7,6 +7,15 @@ from ml.houseType import predictType
 from ml.sgg_nm import predictDistrict
 from ml.report import reportMain
 
+import os 
+from matplotlib import font_manager as fm
+import numpy as np
+import matplotlib.pyplot as plt
+
+def unique_font(lst):
+    x = np.array(lst)
+    return np.unique(x)
+
 def home():
     st.markdown("### 머신러닝 예측 개요 \n"
                 "- 가구당 예측 그래프 추세 \n"
@@ -47,3 +56,14 @@ def run_ml(total_df):
     
     else:
         st.warning("Wrong")
+
+    font_dirs = [os.getcwd() + '/Nanum_Gothic']
+    font_files = fm.findSystemFonts(fontpaths=font_dirs)
+    for font_file in font_files:
+        fm.fontManager.addfont(font_file)
+
+    fm._load_fontmanager(try_read_cache=False)
+    fontNames = [f.name for f in fm.fontManager.ttflist]
+    fontname = st.selectbox("폰트 선택", unique_font(fontNames))
+
+    plt.rc('font', family = fontname)
