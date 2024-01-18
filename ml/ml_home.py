@@ -64,6 +64,6 @@ def run_ml(total_df):
 
     fm._load_fontmanager(try_read_cache=False)
     fontNames = [f.name for f in fm.fontManager.ttflist]
-    fontname = st.selectbox("폰트 선택", unique_font(fontNames))
+    fontname = st.sidebar.selectbox("폰트 선택", unique_font(fontNames))
 
     plt.rc('font', family = fontname)
