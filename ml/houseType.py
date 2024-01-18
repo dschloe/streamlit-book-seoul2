@@ -6,9 +6,14 @@ from prophet import Prophet
 
 import os 
 from matplotlib import font_manager as fm
+import numpy as np
 
-fpath = os.path.join(os.getcwd(), "Nanum_Gothic/SCDream9.otf")
-prop = fm.FontProperties(fname=fpath)
+def unique_font(lst):
+    x = np.array(lst)
+    return np.unique(x)
+
+# fpath = os.path.join(os.getcwd(), "Nanum_Gothic/SCDream9.otf")
+# prop = fm.FontProperties(fname=fpath)
 
 def predict_plot(total_df, types, periods):
     fig, ax = plt.subplots(figsize=(10, 6), sharex=True, ncols=2, nrows=2)
@@ -49,7 +54,7 @@ def predictType(total_df):
 
     fm._load_fontmanager(try_read_cache=False)
     fontNames = [f.name for f in fm.fontManager.ttflist]
-    fontname = st.selectbox("폰트 선택", unique(fontNames))
+    fontname = st.selectbox("폰트 선택", unique_font(fontNames))
 
     plt.rc('font', family = fontname)
     fig = predict_plot(total_df, types, periods)
